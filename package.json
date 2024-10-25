@@ -4,7 +4,8 @@
   "description": "React-Native plugin for the bluetooth ESC/POS printers.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res"
   },
   "keywords": [
     "react-native",
@@ -15,6 +16,10 @@
   ],
   "author": "janus j k lu",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firmansdev/react-native-bluetooth-escpos-printer"
+  },
   "peerDependencies": {
     "react-native": ">=0.55.4"
   }
