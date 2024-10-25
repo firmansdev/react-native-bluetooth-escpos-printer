@@ -34,7 +34,6 @@ android {
     }
 }
 
-// Move the repositories section into the buildscript if it only applies to buildscript dependencies
 repositories {
     mavenCentral() // Ensure Maven Central is used
     google() // Include Google's Maven repository
@@ -48,6 +47,6 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.facebook.react:react-native:+'  // From node_modules
-    implementation 'com.android.support:support-v4:27.0.0' // Consider migrating to AndroidX
+    implementation 'androidx.core:core:1.3.2' // Consider using AndroidX support libraries
     implementation "com.google.zxing:core:3.3.0"
 }
