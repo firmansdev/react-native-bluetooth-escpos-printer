@@ -1,37 +1,32 @@
 buildscript {
     repositories {
-        jcenter { url "http://jcenter.bintray.com/" }
-        maven {url "http://repo.spring.io/plugins-release/"}
-        mavenCentral()
-        maven {
-            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-            url "$rootDir/../node_modules/react-native/android"
-        }
-        maven {
-            url 'https://maven.google.com'
-        }
+        google() // Use Google's Maven repository
+        mavenCentral() // Use Maven Central for dependencies
+        maven { url "https://repo.spring.io/plugins-release/" }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.android.tools.build:gradle:7.2.0' // Update to a more recent version
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 33 // Update to a recent SDK version
+    buildToolsVersion "30.0.3" // Use a more recent version
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 33 // Update to a more recent version
         versionCode 1
         versionName "1.0"
     }
+
     lintOptions {
         abortOnError false
     }
+
     sourceSets {
         main {
             aidl.srcDirs = ['src/main/java']
@@ -39,22 +34,20 @@ android {
     }
 }
 
+// Move the repositories section into the buildscript if it only applies to buildscript dependencies
 repositories {
-    jcenter { url "http://jcenter.bintray.com/" }
-    maven {url "http://repo.spring.io/plugins-release/"}
-    mavenCentral()
+    mavenCentral() // Ensure Maven Central is used
+    google() // Include Google's Maven repository
+    maven { url "https://repo.spring.io/plugins-release/" }
     maven {
         // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
         url "$rootDir/../node_modules/react-native/android"
     }
-    maven {
-        url 'https://maven.google.com'
-    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.facebook.react:react-native:+'  // From node_modules
-    implementation group: 'com.android.support', name: 'support-v4', version: '27.0.0'
+    implementation 'com.android.support:support-v4:27.0.0' // Consider migrating to AndroidX
     implementation "com.google.zxing:core:3.3.0"
 }
